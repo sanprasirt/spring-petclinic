@@ -5,10 +5,11 @@ pipeline {
             agent {
                 docker {
                     image 'maven:3.5.0'
+                    args '-v /root/.m2:/root/.m2'
                 }
             }
             steps {
-                sh 'mvn clean install'
+                sh 'mvn -B -DskipTests clean install'
             }
         }
         stage('Docker Build') {
